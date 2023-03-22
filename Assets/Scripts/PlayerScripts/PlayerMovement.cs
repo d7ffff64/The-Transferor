@@ -22,7 +22,10 @@ namespace Assets.Scripts.PlayerScripts
 
             transform.Translate(vector3 * player.MovementSpeed * Time.deltaTime, Space.World);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vector3), 0.16f);
+            if (vector3 != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vector3), 0.16f);
+            }
         }
         private void Update()
         {
