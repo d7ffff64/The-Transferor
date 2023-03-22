@@ -12,12 +12,9 @@ namespace Assets.Scripts.FactoryScripts
         [SerializeField] private bool allowProduce;
 
         [Header("Factory References")]
-        [SerializeField] private GameObject resourcePrefab;
         [SerializeField] private ResourceDepot resourceDepot;
         [SerializeField] private Stock[] stocks;
         [SerializeField] private int[] amountOfResourcesRequired;
-
-        public GameObject ResourcePrefab => resourcePrefab;
 
         #region Mono
         private void Awake()

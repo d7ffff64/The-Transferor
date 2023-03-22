@@ -660,12 +660,15 @@ MonoBehaviour:
   isFull: 0
   isEmpty: 0
   canTake: 0
-  cellsX: 0
-  cellsY: 0
+  cellsX: 32
+  cellsY: 32
   cellsSize: 0
-  maximumCellsSize: 0
-  cellPrefab: {fileID: 0}
-  startPosition: {x: 0, y: 0}
+  maximumCellsSize: 32
+  cellPrefab: {fileID: 4048810185801095674, guid: 964a563115e5d8847b78844b5af44547,
+    type: 3}
+  startPosition: {x: 0, y: 3}
+  resourcePrefab: {fileID: 469422953228124029, guid: 767757d72d22d3c4f9d64e3719390863,
+    type: 3}
 --- !u!1 &637855819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,12 +1077,15 @@ MonoBehaviour:
   isFull: 0
   isEmpty: 0
   canTake: 0
-  cellsX: 0
-  cellsY: 0
+  cellsX: 32
+  cellsY: 32
   cellsSize: 0
-  maximumCellsSize: 0
-  cellPrefab: {fileID: 0}
-  startPosition: {x: 0, y: 0}
+  maximumCellsSize: 32
+  cellPrefab: {fileID: 4048810185801095674, guid: 964a563115e5d8847b78844b5af44547,
+    type: 3}
+  startPosition: {x: 0, y: 3}
+  resourcePrefab: {fileID: 4721147459157598881, guid: fca501f684046cb44b99b9f7934c5792,
+    type: 3}
 --- !u!1 &859756898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,6 +1545,7 @@ GameObject:
   - component: {fileID: 1290785731}
   - component: {fileID: 1290785730}
   - component: {fileID: 1290785732}
+  - component: {fileID: 1290785733}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1723,6 +1730,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01b176c5e9bdba4ebdc7f1e4741684c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1290785733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290785723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c604624b5694e40a91fc98b54fe1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellsX: 32
+  cellsY: 32
+  cellsSize: 32
+  maximumCellsSize: 32
+  cellPrefab: {fileID: 4048810185801095674, guid: 964a563115e5d8847b78844b5af44547,
+    type: 3}
+  startPosition: {x: 5, y: 1}
+  isFull: 0
 --- !u!1 &1411742701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,9 +2180,12 @@ MonoBehaviour:
   isFull: 0
   isEmpty: 0
   canTake: 0
-  cellsX: 0
-  cellsY: 0
+  cellsX: 32
+  cellsY: 32
   cellsSize: 0
-  maximumCellsSize: 0
-  cellPrefab: {fileID: 0}
-  startPosition: {x: 0, y: 0}
+  maximumCellsSize: 32
+  cellPrefab: {fileID: 4048810185801095674, guid: 964a563115e5d8847b78844b5af44547,
+    type: 3}
+  startPosition: {x: 0, y: 3}
+  resourcePrefab: {fileID: 4450223797811203368, guid: 60af85e35a721a24e873191965713d6b,
+    type: 3}

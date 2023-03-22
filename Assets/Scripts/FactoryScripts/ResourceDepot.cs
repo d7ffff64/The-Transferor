@@ -25,6 +25,9 @@ namespace Assets.Scripts.FactoryScripts
         [SerializeField] private GameObject cellPrefab;
         [SerializeField] private Vector2 startPosition;
 
+        [Header("Resource Depot References")]
+        [SerializeField] private GameObject resourcePrefab;
+
         private List<GameObject> cells = new List<GameObject>();
         private List<GameObject> resources = new List<GameObject>();
         public bool IsFull => isFull;
@@ -39,13 +42,6 @@ namespace Assets.Scripts.FactoryScripts
             if (amountOfResources == 0)
             {
                 isEmpty = true;
-            }
-            else
-            {
-                if (amountOfResources == maximumAmountOfResources)
-                {
-                    isFull = true;
-                }
             }
         }
         private void Start()
@@ -76,7 +72,7 @@ namespace Assets.Scripts.FactoryScripts
 
         private void Update()
         {
-            if (canTake)
+            if (canTake && !isEmpty)
             {
                 currentTime -= 1.0f / timeToTheNextResource * Time.deltaTime;
                 if (currentTime <= 0f)
@@ -93,7 +89,7 @@ namespace Assets.Scripts.FactoryScripts
                 isFull = false;
                 isEmpty = false;
                 amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
-                NewResourceInTheInventory()
+                NewResourceInTheInventory(resourcePrefab);
             }
             else
             {
