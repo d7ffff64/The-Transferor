@@ -1,3 +1,5 @@
+using Assets.Scripts.FactoryScripts;
+using Assets.Scripts.PlayerScripts;
 using Assets.Scripts.ResourcesScripts;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +7,7 @@ using UnityEngine;
 public class Stock : MonoBehaviour
 {
     [Header("Stock Settings")]
+    [SerializeField] private int requiredResourceId;
     [SerializeField] private float currentTime;
     [SerializeField] private float timeToTheNextResource;
     [SerializeField] private int amountOfResources;
@@ -15,8 +18,13 @@ public class Stock : MonoBehaviour
     [SerializeField] private bool isEmpty;
     [SerializeField] private bool canPutDown;
 
-    private List<GameObject> resources = new List<GameObject>();
-     
+    [Header("Stock Inventory Settings")]
+    [SerializeField] private List<Transform> slots = new List<Transform>();
+
+    [Header("Stock References")]
+    [SerializeField] private PlayerInventory playerInventory;
+    [SerializeField] private ResourceDepot resourceDepot;
+
     public bool IsFull => isFull;
     public bool IsEmpty => isEmpty;
     public int AmountOfResources => amountOfResources;
@@ -26,17 +34,6 @@ public class Stock : MonoBehaviour
     private void Awake()
     {
         currentTime = timeToTheNextResource;
-        if (amountOfResources == 0)
-        {
-            isEmpty = true;
-        }
-        else
-        {
-            if (amountOfResources == maximumAmountOfResources)
-            {
-                isFull = true;
-            }
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -55,22 +52,18 @@ public class Stock : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         canPutDown = false;
+        currentTime = timeToTheNextResource;
     }
     #endregion
 
     private void Update()
     {
-        if (isEmpty)
-        {
-            canPutDown = true;
-        }
-
         if (canPutDown)
         {
             currentTime -= 1.0f / timeToTheNextResource * Time.deltaTime;
             if (currentTime <= 0f)
             {
-                DecreateAResource();
+                InstantiateANewResource();
                 currentTime = timeToTheNextResource;
             }
         }
@@ -82,7 +75,16 @@ public class Stock : MonoBehaviour
         {
             isFull = false;
             amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
-            // Instantiate a object in stock
+
+            Transform freeSlot = FreeSlots(slots);
+            freeSlot.gameObject.SetActive(true);
+
+            if (freeSlot != null)
+            {
+                GameObject resourcePrefab = playerInventory.GetResource(requiredResourceId);
+
+                Instantiate(resourcePrefab, new Vector3(freeSlot.position.x, freeSlot.position.y, freeSlot.position.z), Quaternion.identity, freeSlot);
+            }
         }
         else
         {
@@ -94,12 +96,38 @@ public class Stock : MonoBehaviour
         if (amountOfResources != 0)
         {
             amountOfResources -= Mathf.Clamp(1, 0, maximumAmountOfResources);
-            // Destory 1 object resource in stock
-            // Instantiate a object in inventory
+            Transform busySlot = BusySlots(slots);
+            busySlot.gameObject.SetActive(false);
+            Destroy(busySlot.transform.GetChild(0).gameObject);
         }
         else
         {
+            isFull = false;
             isEmpty = true;
         }
+    }
+    private Transform FreeSlots(List<Transform> slots)
+    {
+        foreach (var item in slots)
+        {
+            if (!item.gameObject.activeInHierarchy)
+            {
+                return item;
+            }
+        }
+        Debug.Log("Free slots were not found");
+        return null;
+    }
+    private Transform BusySlots(List<Transform> slots)
+    {
+        foreach (var item in slots)
+        {
+            if (item.gameObject.activeInHierarchy)
+            {
+                return item;
+            }
+        }
+        Debug.Log("Busy slots were not found");
+        return null;
     }
 }

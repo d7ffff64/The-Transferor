@@ -31,21 +31,23 @@ namespace Assets.Scripts.FactoryScripts
                 allowProduce = false;
             }
 
-            if (allowProduce)
+            if (GoThroughTheStocks(stocks, amountOfResourcesRequired))
+            {
+                allowProduce = true;
+            }
+            else
+            {
+                allowProduce = false;
+            }
+
+            if (allowProduce && !resourceDepot.IsFull)
             {
                 currentTime -= 1 / timeToTheNextResource * Time.deltaTime;
                 if (currentTime <= 0f)
                 {
-                    CheckBeforeProduction();
+                    Produce();
                     currentTime = timeToTheNextResource;
                 }
-            }
-        }
-        public void CheckBeforeProduction()
-        {
-            if (allowProduce && !resourceDepot.IsFull && GoThroughTheStocks(stocks, amountOfResourcesRequired))
-            {
-                Produce();
             }
         }
         private void Produce()
@@ -73,6 +75,7 @@ namespace Assets.Scripts.FactoryScripts
                     {
                         return true;
                     }
+                    return false;
                 }
                 return false;
             }

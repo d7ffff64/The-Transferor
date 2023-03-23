@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.ResourcesScripts;
+﻿using Assets.Scripts.PlayerScripts;
+using Assets.Scripts.ResourcesScripts;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,40 +19,23 @@ namespace Assets.Scripts.FactoryScripts
         [SerializeField] private bool canTake;
 
         [Header("Resource Depot Inventory Settings")]
-        [SerializeField] private int cellsX;
-        [SerializeField] private int cellsY;
-        [SerializeField] private int cellsSize;
-        [SerializeField] private int maximumCellsSize;
-        [SerializeField] private GameObject cellPrefab;
-        [SerializeField] private Vector2 startPosition;
+        [SerializeField] private List<Transform> slots = new List<Transform>();
 
         [Header("Resource Depot References")]
+        [SerializeField] private PlayerInventory playerInventory;
         [SerializeField] private GameObject resourcePrefab;
 
-        private List<GameObject> cells = new List<GameObject>();
-        private List<GameObject> resources = new List<GameObject>();
         public bool IsFull => isFull;
         public bool IsEmpty => isEmpty;
         public int AmountOfResources => amountOfResources;
         public int MaximumAmountOfResources => maximumAmountOfResources;
 
+        public GameObject ResourcePrefab => resourcePrefab;
+
         #region Mono
         private void Awake()
         {
             currentTime = timeToTheNextResource;
-            if (amountOfResources == 0)
-            {
-                isEmpty = true;
-            }
-        }
-        private void Start()
-        {
-            startPosition = new Vector2(0f, 0f);
-            Vector2 cellPotision = new Vector2(startPosition.x + cellsY * cellsSize, startPosition.y + cellsX * cellsSize);
-
-            GameObject cell = Instantiate(cellPrefab, cellPotision, Quaternion.identity, transform);
-
-            cells.Add(cell);
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -72,12 +56,20 @@ namespace Assets.Scripts.FactoryScripts
 
         private void Update()
         {
-            if (canTake && !isEmpty)
+            if (canTake)
             {
                 currentTime -= 1.0f / timeToTheNextResource * Time.deltaTime;
                 if (currentTime <= 0f)
                 {
-                    DecreateAResource();
+                    if (amountOfResources != 0)
+                    {
+                        isEmpty = false;
+                        DecreateAResource();
+                    }
+                    else
+                    {
+                        isEmpty = true;
+                    }
                     currentTime = timeToTheNextResource;
                 }
             }
@@ -87,40 +79,38 @@ namespace Assets.Scripts.FactoryScripts
             if (amountOfResources != maximumAmountOfResources)
             {
                 isFull = false;
-                isEmpty = false;
                 amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
                 NewResourceInTheInventory(resourcePrefab);
             }
             else
             {
+                isEmpty = false;
                 isFull = true;
             }
         }
-        public void NewResourceInTheInventory(GameObject item)
+        public void NewResourceInTheInventory(GameObject resourcePrefab)
         {
-            if (cellsSize == maximumCellsSize)
-            {
-                isFull = true;
-            }
-            else
-            {
-                isFull = false;
-            }
+            Transform freeSlot = FreeSlots(slots);
+            freeSlot.gameObject.SetActive(true);
 
-            resources.Add(item);
-
-            GameObject freeCell = Free(cells);
-
-            if (freeCell != null)
-            {
-                item.transform.position = freeCell.transform.position;
-            }
+            Instantiate(resourcePrefab, new Vector3(freeSlot.transform.position.x, freeSlot.transform.position.y, freeSlot.transform.position.z), Quaternion.identity, freeSlot);
         }
-        private GameObject Free(List<GameObject> objects)
+        private Transform FreeSlots(List<Transform> slots)
         {
-            foreach (var item in objects)
+            foreach (var item in slots)
             {
-                if (!item.activeInHierarchy)
+                if (!item.gameObject.activeInHierarchy)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        private Transform BusySlots(List<Transform> slots)
+        {
+            foreach (var item in slots)
+            {
+                if (item.gameObject.activeInHierarchy)
                 {
                     return item;
                 }
@@ -129,12 +119,17 @@ namespace Assets.Scripts.FactoryScripts
         }
         private void DecreateAResource()
         {
-            if (amountOfResources != 0)
+            if (amountOfResources != 0 && !playerInventory.IsFull)
             {
                 amountOfResources -= Mathf.Clamp(1, 0, maximumAmountOfResources);
-                // Destory 1 object resource in resource depot
-                // Instantiate a object in inventory
 
+                Transform busySlot = BusySlots(slots);
+                GameObject resource = busySlot.transform.GetChild(0).gameObject;
+
+                playerInventory.NewResourceInTheInventory(resource);
+
+                Destroy(busySlot.transform.GetChild(0).gameObject);
+                busySlot.gameObject.SetActive(false);
             }
             else
             {
