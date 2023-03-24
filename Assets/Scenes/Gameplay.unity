@@ -281,6 +281,7 @@ MonoBehaviour:
   - {fileID: 4450223797348764294}
   - {fileID: 4450223797606926155}
   - {fileID: 4450223798637537159}
+  parentFactory: {fileID: 0}
   playerInventory: {fileID: 1091095685}
   resourceDepot: {fileID: 834876638}
 --- !u!1 &284544344
@@ -1986,6 +1987,7 @@ MonoBehaviour:
   - {fileID: 4450223798097888946}
   - {fileID: 4450223798094831397}
   - {fileID: 4450223797712080942}
+  parentFactory: {fileID: 0}
   playerInventory: {fileID: 1091095685}
   resourceDepot: {fileID: 834876638}
 --- !u!1 &1157482730
@@ -2748,6 +2750,7 @@ MonoBehaviour:
   - {fileID: 4450223796925185014}
   - {fileID: 4450223797604044466}
   - {fileID: 4450223797654070611}
+  parentFactory: {fileID: 0}
   playerInventory: {fileID: 1091095685}
   resourceDepot: {fileID: 497328285}
 --- !u!1 &1844779823

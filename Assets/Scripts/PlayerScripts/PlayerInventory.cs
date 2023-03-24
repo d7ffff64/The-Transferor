@@ -36,10 +36,9 @@ namespace Assets.Scripts.PlayerScripts
                     {
                         return resource;
                     }
-                    else
-                    {
-                        resource = null;
-                    }
+                    amountOfResources--;
+                    slot.gameObject.SetActive(false);
+                    Destroy(resource);
                 }
             }
             return null;
@@ -64,8 +63,7 @@ namespace Assets.Scripts.PlayerScripts
                 Transform freeSlot = FreeSlots(slots);
                 freeSlot.gameObject.SetActive(true);
 
-                GameObject resource = Instantiate(resourcePrefab, new Vector3(freeSlot.transform.position.x, freeSlot.transform.position.y, freeSlot.transform.position.z), Quaternion.identity);
-                resource.transform.parent = freeSlot;
+                Instantiate(resourcePrefab, new Vector3(freeSlot.transform.position.x, freeSlot.transform.position.y, freeSlot.transform.position.z), Quaternion.identity, freeSlot);
             }
         }
         private Transform FreeSlots(List<Transform> slots)

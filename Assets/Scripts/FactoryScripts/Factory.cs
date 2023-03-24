@@ -16,6 +16,8 @@ namespace Assets.Scripts.FactoryScripts
         [SerializeField] private Stock[] stocks;
         [SerializeField] private int[] amountOfResourcesRequired;
 
+        public int[] AmountOfresourceRequired => amountOfResourcesRequired;
+
         #region Mono
         private void Awake()
         {
@@ -59,7 +61,7 @@ namespace Assets.Scripts.FactoryScripts
         {
             for (int i = 0; i < stocks.Length; i++)
             {
-                if (stocks[i].AmountOfResources != 0)
+                if (stocks[i].AmountOfResources == amountOfResourcesRequired[i])
                 {
                     stocks[i].DecreateAResource();
                 }
@@ -71,12 +73,16 @@ namespace Assets.Scripts.FactoryScripts
             {
                 for (int i = 0; i < stocks.Length; i++)
                 {
-                    if (stocks[i].AmountOfResources == amountOfResourcesRequired[i])
+                    Debug.Log(stocks[i]);
+                    if (stocks[i].AmountOfResources >= amountOfResourcesRequired[i])
                     {
+                        Debug.Log(stocks[i].AmountOfResources);
+                        Debug.Log(amountOfResourcesRequired[i]);
+                        Debug.Log("True");
                         return true;
                     }
-                    return false;
                 }
+                Debug.Log("false");
                 return false;
             }
             else

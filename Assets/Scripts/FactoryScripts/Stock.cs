@@ -22,9 +22,9 @@ public class Stock : MonoBehaviour
     [SerializeField] private List<Transform> slots = new List<Transform>();
 
     [Header("Stock References")]
+    [SerializeField] private Factory parentFactory;
     [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private ResourceDepot resourceDepot;
-
     public bool IsFull => isFull;
     public bool IsEmpty => isEmpty;
     public int AmountOfResources => amountOfResources;
@@ -93,12 +93,17 @@ public class Stock : MonoBehaviour
     }
     public void DecreateAResource()
     {
-        if (amountOfResources != 0)
+        if (amountOfResources >= 4)
         {
-            amountOfResources -= Mathf.Clamp(1, 0, maximumAmountOfResources);
-            Transform busySlot = BusySlots(slots);
-            busySlot.gameObject.SetActive(false);
-            Destroy(busySlot.transform.GetChild(0).gameObject);
+            for (int i = 0; i < 4; i++)
+            {
+                amountOfResources -= Mathf.Clamp(i, 0, maximumAmountOfResources);
+
+                Transform busySlot = BusySlots(slots);
+
+                busySlot.gameObject.SetActive(false);
+                Destroy(busySlot.transform.GetChild(0).gameObject);
+            }
         }
         else
         {
