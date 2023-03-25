@@ -41,7 +41,7 @@ namespace Assets.Scripts.FactoryScripts
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                if (!isEmpty)
+                if (!isEmpty && !playerInventory.IsFull)
                 {
                     canTake = true;
                 }
@@ -56,6 +56,16 @@ namespace Assets.Scripts.FactoryScripts
 
         private void Update()
         {
+            if (amountOfResources != maximumAmountOfResources)
+            {
+                isFull = false;
+            }
+            else
+            {
+                isEmpty = false;
+                isFull = true;
+            }
+
             if (canTake)
             {
                 currentTime -= 1.0f / timeToTheNextResource * Time.deltaTime;
@@ -76,20 +86,13 @@ namespace Assets.Scripts.FactoryScripts
         }
         public void InstantiateANewResource()
         {
-            if (amountOfResources != maximumAmountOfResources)
-            {
-                isFull = false;
-                amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
-                NewResourceInTheInventory(resourcePrefab);
-            }
-            else
-            {
-                isEmpty = false;
-                isFull = true;
-            }
+            isFull = false;
+            amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
+            NewResourceInTheInventory(resourcePrefab);
         }
         public void NewResourceInTheInventory(GameObject resourcePrefab)
         {
+            isFull = false;
             Transform freeSlot = FreeSlots(slots);
             freeSlot.gameObject.SetActive(true);
 

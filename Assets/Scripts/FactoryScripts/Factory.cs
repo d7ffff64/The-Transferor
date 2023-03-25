@@ -28,12 +28,7 @@ namespace Assets.Scripts.FactoryScripts
 
         private void Update()
         {
-            if (resourceDepot.IsFull)
-            {
-                allowProduce = false;
-            }
-
-            if (GoThroughTheStocks(stocks, amountOfResourcesRequired))
+            if (GoThroughTheStocks(stocks, amountOfResourcesRequired) && !resourceDepot.IsFull)
             {
                 allowProduce = true;
             }
@@ -69,21 +64,17 @@ namespace Assets.Scripts.FactoryScripts
         }
         private bool GoThroughTheStocks(Stock[] stocks, int[] amountOfResourcesRequired)
         {
+            bool allStocksHaveTheRightAmountOfResources = true;
             if (stocks.Length != 0 && amountOfResourcesRequired.Length != 0)
             {
                 for (int i = 0; i < stocks.Length; i++)
                 {
-                    Debug.Log(stocks[i]);
-                    if (stocks[i].AmountOfResources >= amountOfResourcesRequired[i])
+                    if (stocks[i].AmountOfResources < amountOfResourcesRequired[i])
                     {
-                        Debug.Log(stocks[i].AmountOfResources);
-                        Debug.Log(amountOfResourcesRequired[i]);
-                        Debug.Log("True");
-                        return true;
+                        allStocksHaveTheRightAmountOfResources = false;
                     }
                 }
-                Debug.Log("false");
-                return false;
+                return allStocksHaveTheRightAmountOfResources;
             }
             else
             {

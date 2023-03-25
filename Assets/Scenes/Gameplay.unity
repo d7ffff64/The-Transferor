@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160e976a820875469156c8a24274152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredResourceId: 0
+  requiredResourceId: 1
   currentTime: 0
   timeToTheNextResource: 1
   amountOfResources: 0
@@ -281,9 +281,7 @@ MonoBehaviour:
   - {fileID: 4450223797348764294}
   - {fileID: 4450223797606926155}
   - {fileID: 4450223798637537159}
-  parentFactory: {fileID: 0}
   playerInventory: {fileID: 1091095685}
-  resourceDepot: {fileID: 834876638}
 --- !u!1 &284544344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,7 +1609,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1821,7 +1819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFull: 0
-  amountOfResources: 0
+  amountOfResources: 1
   slots:
   - {fileID: 1866480471246154431}
   - {fileID: 284544345}
@@ -1987,9 +1985,7 @@ MonoBehaviour:
   - {fileID: 4450223798097888946}
   - {fileID: 4450223798094831397}
   - {fileID: 4450223797712080942}
-  parentFactory: {fileID: 0}
   playerInventory: {fileID: 1091095685}
-  resourceDepot: {fileID: 834876638}
 --- !u!1 &1157482730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2410,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438169616}
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2701,7 +2697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160e976a820875469156c8a24274152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredResourceId: 0
+  requiredResourceId: 1
   currentTime: 0
   timeToTheNextResource: 1
   amountOfResources: 0
@@ -2750,9 +2746,7 @@ MonoBehaviour:
   - {fileID: 4450223796925185014}
   - {fileID: 4450223797604044466}
   - {fileID: 4450223797654070611}
-  parentFactory: {fileID: 0}
   playerInventory: {fileID: 1091095685}
-  resourceDepot: {fileID: 497328285}
 --- !u!1 &1844779823
 GameObject:
   m_ObjectHideFlags: 0

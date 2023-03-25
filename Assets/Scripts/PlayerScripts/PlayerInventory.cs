@@ -15,6 +15,7 @@ namespace Assets.Scripts.PlayerScripts
         [SerializeField] private int amountOfResources;
 
         public bool IsFull => isFull;
+        public int AmountOfResources => amountOfResources;
 
         [SerializeField] private List<Transform> slots = new List<Transform>();
 
@@ -29,37 +30,56 @@ namespace Assets.Scripts.PlayerScripts
         {
             foreach (var slot in slots)
             {
-                if (slot.transform.childCount != 0)
+                if (slot.childCount != 0)
                 {
-                    GameObject resource = slot.transform.GetChild(0).gameObject;
+                    GameObject resource = slot.GetChild(0).gameObject;
                     if (resource.GetComponent<Resource>().Id == id)
                     {
+                        if (amountOfResources <= slots.Count)
+                        {
+                            isFull = false;
+                        }
+                        //amountOfResources -= 1;
+                        amountOfResources -= Mathf.Clamp(1, 1, slots.Count);
+                        slot.gameObject.SetActive(false);
+                        Destroy(resource, 0.1f);
                         return resource;
                     }
-                    amountOfResources--;
-                    slot.gameObject.SetActive(false);
-                    Destroy(resource);
                 }
             }
             return null;
         }
-        public void NewResourceInTheInventory(GameObject resourcePrefab)
+        public bool AnySuchResources(int id)
         {
-            amountOfResources = 0;
             foreach (var slot in slots)
             {
-                if (slot.gameObject.activeInHierarchy)
+                if (slot.childCount != 0)
                 {
-                    amountOfResources++;
+                    if (slot.GetChild(0).gameObject.GetComponent<Resource>().Id == id)
+                    {
+                        return true;
+                    }
                 }
             }
-
+            return false;
+        }
+        public void NewResourceInTheInventory(GameObject resourcePrefab)
+        {
             if (amountOfResources >= slots.Count)
             {
                 isFull = true;
             }
             else
             {
+                amountOfResources = 1;
+                foreach (var slot in slots)
+                {
+                    if (slot.gameObject.activeInHierarchy)
+                    {
+                        amountOfResources += Mathf.Clamp(1, 1, slots.Count);
+                    }
+                }
+
                 Transform freeSlot = FreeSlots(slots);
                 freeSlot.gameObject.SetActive(true);
 

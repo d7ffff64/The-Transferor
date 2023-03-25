@@ -22,9 +22,7 @@ public class Stock : MonoBehaviour
     [SerializeField] private List<Transform> slots = new List<Transform>();
 
     [Header("Stock References")]
-    [SerializeField] private Factory parentFactory;
     [SerializeField] private PlayerInventory playerInventory;
-    [SerializeField] private ResourceDepot resourceDepot;
     public bool IsFull => isFull;
     public bool IsEmpty => isEmpty;
     public int AmountOfResources => amountOfResources;
@@ -58,7 +56,7 @@ public class Stock : MonoBehaviour
 
     private void Update()
     {
-        if (canPutDown)
+        if (canPutDown && playerInventory.AmountOfResources >= 1)
         {
             currentTime -= 1.0f / timeToTheNextResource * Time.deltaTime;
             if (currentTime <= 0f)
@@ -74,16 +72,22 @@ public class Stock : MonoBehaviour
         if (amountOfResources != maximumAmountOfResources)
         {
             isFull = false;
-            amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
 
-            Transform freeSlot = FreeSlots(slots);
-            freeSlot.gameObject.SetActive(true);
-
-            if (freeSlot != null)
+            if (playerInventory.AnySuchResources(requiredResourceId))
             {
-                GameObject resourcePrefab = playerInventory.GetResource(requiredResourceId);
+                amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
 
-                Instantiate(resourcePrefab, new Vector3(freeSlot.position.x, freeSlot.position.y, freeSlot.position.z), Quaternion.identity, freeSlot);
+                Transform freeSlot = FreeSlots(slots);
+                freeSlot.gameObject.SetActive(true);
+
+                if (freeSlot != null)
+                {
+                    GameObject resourcePrefab = playerInventory.GetResource(requiredResourceId);
+                    if (resourcePrefab != null)
+                    {
+                        Instantiate(resourcePrefab, new Vector3(freeSlot.position.x, freeSlot.position.y, freeSlot.position.z), Quaternion.identity, freeSlot);
+                    }
+                }
             }
         }
         else
@@ -97,7 +101,7 @@ public class Stock : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                amountOfResources -= Mathf.Clamp(i, 0, maximumAmountOfResources);
+                amountOfResources -= Mathf.Clamp(1, 0, maximumAmountOfResources);
 
                 Transform busySlot = BusySlots(slots);
 
@@ -115,7 +119,7 @@ public class Stock : MonoBehaviour
     {
         foreach (var item in slots)
         {
-            if (!item.gameObject.activeInHierarchy)
+            if (!item.gameObject.activeInHierarchy && item.childCount == 0)
             {
                 return item;
             }
