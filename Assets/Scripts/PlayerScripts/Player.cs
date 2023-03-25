@@ -5,8 +5,8 @@ namespace Assets.Scripts.PlayerScripts
     public class Player : MonoBehaviour
     {
         [Header("Player Movement Settings")]
-        [SerializeField] private float movementSpeed;
-        public float MovementSpeed => movementSpeed;
+        [SerializeField] private float _movementSpeed;
+        public float MovementSpeed => _movementSpeed;
     }
 }
 

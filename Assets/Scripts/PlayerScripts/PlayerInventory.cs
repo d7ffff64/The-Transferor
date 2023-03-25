@@ -11,35 +11,28 @@ namespace Assets.Scripts.PlayerScripts
     public class PlayerInventory : MonoBehaviour
     {
         [Header("Player Inventory Information")]
-        [SerializeField] private bool isFull;
-        [SerializeField] private int amountOfResources;
+        [SerializeField] private bool _isFull;
+        [SerializeField] private int _amountOfResources;
 
-        public bool IsFull => isFull;
-        public int AmountOfResources => amountOfResources;
+        public bool IsFull => _isFull;
+        public int AmountOfResources => _amountOfResources;
 
-        [SerializeField] private List<Transform> slots = new List<Transform>();
-
-        #region Mono
-        private void Awake()
-        {
-            
-        }
-        #endregion
+        [SerializeField] private List<Transform> _slots = new List<Transform>();
 
         public GameObject GetResource(int id)
         {
-            foreach (var slot in slots)
+            foreach (var slot in _slots)
             {
                 if (slot.childCount != 0)
                 {
                     GameObject resource = slot.GetChild(0).gameObject;
                     if (resource.GetComponent<Resource>().Id == id)
                     {
-                        if (amountOfResources <= slots.Count)
+                        if (_amountOfResources <= _slots.Count)
                         {
-                            isFull = false;
+                            _isFull = false;
                         }
-                        amountOfResources -= Mathf.Clamp(1, 1, slots.Count);
+                        _amountOfResources -= Mathf.Clamp(1, 1, _slots.Count);
                         slot.gameObject.SetActive(false);
                         Destroy(resource, 0.1f);
                         return resource;
@@ -50,7 +43,7 @@ namespace Assets.Scripts.PlayerScripts
         }
         public bool AnySuchResources(int id)
         {
-            foreach (var slot in slots)
+            foreach (var slot in _slots)
             {
                 if (slot.childCount != 0)
                 {
@@ -64,22 +57,22 @@ namespace Assets.Scripts.PlayerScripts
         }
         public void NewResourceInTheInventory(GameObject resourcePrefab)
         {
-            if (amountOfResources >= slots.Count)
+            if (_amountOfResources >= _slots.Count)
             {
-                isFull = true;
+                _isFull = true;
             }
             else
             {
-                amountOfResources = 1;
-                foreach (var slot in slots)
+                _amountOfResources = 1;
+                foreach (var slot in _slots)
                 {
                     if (slot.gameObject.activeInHierarchy)
                     {
-                        amountOfResources += Mathf.Clamp(1, 1, slots.Count);
+                        _amountOfResources += Mathf.Clamp(1, 1, _slots.Count);
                     }
                 }
 
-                Transform freeSlot = FreeSlots(slots);
+                Transform freeSlot = FreeSlots(_slots);
                 freeSlot.gameObject.SetActive(true);
 
                 Instantiate(resourcePrefab, new Vector3(freeSlot.transform.position.x, freeSlot.transform.position.y, freeSlot.transform.position.z), freeSlot.rotation, freeSlot);

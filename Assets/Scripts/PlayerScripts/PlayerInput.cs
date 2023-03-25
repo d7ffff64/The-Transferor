@@ -7,11 +7,11 @@ namespace Assets.Scripts.PlayerScripts
 {
     public class PlayerInput : MonoBehaviour
     {
-        private Vector2 vector2;
-        public Vector2 Vector2 => vector2;
+        private Vector2 _vector2;
+        public Vector2 Vector2 => _vector2;
         public void OnMove(InputAction.CallbackContext context)
         {
-            vector2 = context.ReadValue<Vector2>();
+            _vector2 = context.ReadValue<Vector2>();
         }
     }
 }

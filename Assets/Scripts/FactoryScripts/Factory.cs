@@ -1,3 +1,4 @@
+using Assets.Scripts.UserInterfaceScripts;
 using UnityEngine;
 
 namespace Assets.Scripts.FactoryScripts
@@ -5,58 +6,76 @@ namespace Assets.Scripts.FactoryScripts
     public class Factory : MonoBehaviour
     {
         [Header("Factory Settings")]
-        [SerializeField] private float currentTime;
-        [SerializeField] float timeToTheNextResource;
+        [SerializeField] private float _currentTime;
+        [SerializeField] private float _timeToTheNextResource;
+        [SerializeField] private Stock[] _stocks;
+        [SerializeField] private int[] _amountOfResourcesRequired;
 
         [Header("Factory Information")]
-        [SerializeField] private bool allowProduce;
+        [SerializeField] private bool _allowProduce;
 
         [Header("Factory References")]
-        [SerializeField] private ResourceDepot resourceDepot;
-        [SerializeField] private Stock[] stocks;
-        [SerializeField] private int[] amountOfResourcesRequired;
+        [SerializeField] private InsideGameNotifications _insideGameNotifications;
+        [SerializeField] private ResourceDepot _resourceDepot;
 
-        public int[] AmountOfresourceRequired => amountOfResourcesRequired;
+        [Header("Factory Notifications Settings")]
+        [SerializeField] private bool _allowNotification;
+        [SerializeField] private float _currentTimeNotification;
+        [SerializeField] private float _timeToTheNextNotification;
+
+        public int[] AmountOfresourceRequired => _amountOfResourcesRequired;
 
         #region Mono
         private void Awake()
         {
-            allowProduce = true;
-            currentTime = timeToTheNextResource;
+            _allowProduce = true;
+            _currentTime = _timeToTheNextResource;
+            _currentTimeNotification = _timeToTheNextNotification;
         }
         #endregion
 
         private void Update()
         {
-            if (GoThroughTheStocks(stocks, amountOfResourcesRequired) && !resourceDepot.IsFull)
+            if (GoThroughTheStocks(_stocks, _amountOfResourcesRequired) && !_resourceDepot.IsFull)
             {
-                allowProduce = true;
+                _allowProduce = true;
             }
             else
             {
-                allowProduce = false;
+                _allowProduce = false;
             }
 
-            if (allowProduce && !resourceDepot.IsFull)
+            if (_allowProduce && !_resourceDepot.IsFull)
             {
-                currentTime -= 1 / timeToTheNextResource * Time.deltaTime;
-                if (currentTime <= 0f)
+                _currentTime -= 1 / _timeToTheNextResource * Time.deltaTime;
+                if (_currentTime <= 0f)
                 {
                     Produce();
-                    currentTime = timeToTheNextResource;
+                    _currentTime = _timeToTheNextResource;
+                }
+            }
+
+            if (_allowNotification)
+            {
+                _currentTimeNotification -= 1 / _timeToTheNextNotification * Time.deltaTime;
+
+                if (_currentTimeNotification <= 0f)
+                {
+                    _insideGameNotifications.NewNotification($"{gameObject.name} | Factory has suspended its work due to a lack of resources.");
+                    _currentTimeNotification = _timeToTheNextNotification;
                 }
             }
         }
         private void Produce()
         {
-            DecreaseAResourceInStocks(stocks);
-            resourceDepot.InstantiateANewResource();
+            DecreaseAResourceInStocks(_stocks);
+            _resourceDepot.InstantiateANewResource();
         }
         private void DecreaseAResourceInStocks(Stock[] stocks)
         {
             for (int i = 0; i < stocks.Length; i++)
             {
-                if (stocks[i].AmountOfResources == amountOfResourcesRequired[i])
+                if (stocks[i].AmountOfResources == _amountOfResourcesRequired[i])
                 {
                     stocks[i].DecreateAResource();
                 }
@@ -72,12 +91,14 @@ namespace Assets.Scripts.FactoryScripts
                     if (stocks[i].AmountOfResources < amountOfResourcesRequired[i])
                     {
                         allStocksHaveTheRightAmountOfResources = false;
+                        _allowNotification = true;
                     }
                 }
                 return allStocksHaveTheRightAmountOfResources;
             }
             else
             {
+                _allowNotification = false;
                 return true;
             }
         }

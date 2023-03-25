@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.PlayerScripts;
 using Assets.Scripts.ResourcesScripts;
+using Assets.Scripts.UserInterfaceScripts;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,92 +9,109 @@ namespace Assets.Scripts.FactoryScripts
     public class ResourceDepot : MonoBehaviour
     {
         [Header("Resource Depot Settings")]
-        [SerializeField] private float currentTime;
-        [SerializeField] float timeToTheNextResource;
-        [SerializeField] private int amountOfResources;
-        [SerializeField] private int maximumAmountOfResources;
+        [SerializeField] private float _currentTime;
+        [SerializeField] private float _timeToTheNextResource;
+        [SerializeField] private int _amountOfResources;
+        [SerializeField] private int _maximumAmountOfResources;
 
         [Header("Resource Depot Information")]
-        [SerializeField] private bool isFull;
-        [SerializeField] private bool isEmpty;
-        [SerializeField] private bool canTake;
+        [SerializeField] private bool _isFull;
+        [SerializeField] private bool _isEmpty;
+        [SerializeField] private bool _canTake;
 
         [Header("Resource Depot Inventory Settings")]
-        [SerializeField] private List<Transform> slots = new List<Transform>();
+        [SerializeField] private List<Transform> _slots = new List<Transform>();
 
         [Header("Resource Depot References")]
-        [SerializeField] private PlayerInventory playerInventory;
-        [SerializeField] private GameObject resourcePrefab;
+        [SerializeField] private InsideGameNotifications _insideGameNotifications;
+        [SerializeField] private PlayerInventory _playerInventory;
+        [SerializeField] private GameObject _resourcePrefab;
 
-        public bool IsFull => isFull;
-        public bool IsEmpty => isEmpty;
-        public int AmountOfResources => amountOfResources;
-        public int MaximumAmountOfResources => maximumAmountOfResources;
+        [Header("Stock Notifications Settings")]
+        [SerializeField] private float _currentTimeNotification;
+        [SerializeField] private float _timeToTheNextNotification;
 
-        public GameObject ResourcePrefab => resourcePrefab;
+        public bool IsFull => _isFull;
+        public bool IsEmpty => _isEmpty;
+        public int AmountOfResources => _amountOfResources;
+        public int MaximumAmountOfResources => _maximumAmountOfResources;
+
+        public GameObject ResourcePrefab => _resourcePrefab;
 
         #region Mono
         private void Awake()
         {
-            currentTime = timeToTheNextResource;
+            _currentTime = _timeToTheNextResource;
+            _currentTimeNotification = _timeToTheNextNotification;
         }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                if (!isEmpty && !playerInventory.IsFull)
+                if (!_isEmpty && !_playerInventory.IsFull)
                 {
-                    canTake = true;
+                    _canTake = true;
                 }
             }
         }
         private void OnTriggerExit(Collider other)
         {
-            canTake = false;
-            currentTime = timeToTheNextResource;
+            _canTake = false;
+            _currentTime = _timeToTheNextResource;
         }
         #endregion
 
         private void Update()
         {
-            if (amountOfResources != maximumAmountOfResources)
+            if (_amountOfResources != _maximumAmountOfResources)
             {
-                isFull = false;
+                _isFull = false;
             }
             else
             {
-                isEmpty = false;
-                isFull = true;
+                _isEmpty = false;
+                _isFull = true;
             }
 
-            if (canTake)
+            if (_canTake)
             {
-                currentTime -= 1.0f / timeToTheNextResource * Time.deltaTime;
-                if (currentTime <= 0f)
+                _currentTime -= 1.0f / _timeToTheNextResource * Time.deltaTime;
+                if (_currentTime <= 0f)
                 {
-                    if (amountOfResources != 0)
+                    if (_amountOfResources != 0)
                     {
-                        isEmpty = false;
+                        _isEmpty = false;
                         DecreateAResource();
                     }
                     else
                     {
-                        isEmpty = true;
+                        _isEmpty = true;
                     }
-                    currentTime = timeToTheNextResource;
+                    _currentTime = _timeToTheNextResource;
+                }
+            }
+
+            if (_isFull)
+            {
+                _currentTimeNotification -= 1 / _timeToTheNextNotification * Time.deltaTime;
+
+                if (_currentTimeNotification <= 0f)
+                {
+                    _insideGameNotifications.NewNotification($"{gameObject.transform.parent.name} | {gameObject.name} | The stock is full!");
+                    _currentTimeNotification = _timeToTheNextNotification;
                 }
             }
         }
         public void InstantiateANewResource()
         {
-            isFull = false;
-            amountOfResources += Mathf.Clamp(1, 0, maximumAmountOfResources);
-            NewResourceInTheInventory(resourcePrefab);
+            _isFull = false;
+            _amountOfResources += Mathf.Clamp(1, 0, _maximumAmountOfResources);
+            NewResourceInTheInventory(_resourcePrefab);
         }
         public void NewResourceInTheInventory(GameObject resourcePrefab)
         {
-            isFull = false;
-            Transform freeSlot = FreeSlots(slots);
+            _isFull = false;
+            Transform freeSlot = FreeSlots(_slots);
             freeSlot.gameObject.SetActive(true);
 
             Instantiate(resourcePrefab, new Vector3(freeSlot.transform.position.x, freeSlot.transform.position.y, freeSlot.transform.position.z), Quaternion.identity, freeSlot);
@@ -122,21 +140,21 @@ namespace Assets.Scripts.FactoryScripts
         }
         private void DecreateAResource()
         {
-            if (amountOfResources != 0 && !playerInventory.IsFull)
+            if (_amountOfResources != 0 && !_playerInventory.IsFull)
             {
-                amountOfResources -= Mathf.Clamp(1, 0, maximumAmountOfResources);
+                _amountOfResources -= Mathf.Clamp(1, 0, _maximumAmountOfResources);
 
-                Transform busySlot = BusySlots(slots);
+                Transform busySlot = BusySlots(_slots);
                 GameObject resource = busySlot.transform.GetChild(0).gameObject;
 
-                playerInventory.NewResourceInTheInventory(resource);
+                _playerInventory.NewResourceInTheInventory(resource);
 
                 Destroy(busySlot.transform.GetChild(0).gameObject);
                 busySlot.gameObject.SetActive(false);
             }
             else
             {
-                isEmpty = true;
+                _isEmpty = true;
             }
         }
     }
