@@ -232,19 +232,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160e976a820875469156c8a24274152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredResourceId: 0
+  _requiredResourceId: 1
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _amountOfResources: 0
-  _maximumAmountOfResources: 0
+  _maximumAmountOfResources: 40
   _isFull: 0
   _isEmpty: 0
   _canPutDown: 0
-  _slots: []
-  _insideGameNotifications: {fileID: 0}
-  _playerInventory: {fileID: 0}
+  _slots:
+  - {fileID: 4450223796776897212}
+  - {fileID: 4450223797389304209}
+  - {fileID: 4450223796974509853}
+  - {fileID: 4450223798082594600}
+  - {fileID: 4450223798733053552}
+  - {fileID: 4450223797267651337}
+  - {fileID: 4450223798870287072}
+  - {fileID: 4450223798685533114}
+  - {fileID: 4450223797848229815}
+  - {fileID: 4450223798611010011}
+  - {fileID: 4450223798592189724}
+  - {fileID: 4450223798094678824}
+  - {fileID: 4450223798882864963}
+  - {fileID: 4450223797495890502}
+  - {fileID: 4450223797465448213}
+  - {fileID: 4450223797868086729}
+  - {fileID: 4450223797239593675}
+  - {fileID: 4450223798392070419}
+  - {fileID: 4450223798855310743}
+  - {fileID: 4450223797548248754}
+  - {fileID: 4450223798283700616}
+  - {fileID: 4450223797876907686}
+  - {fileID: 4450223797528475771}
+  - {fileID: 4450223797981025078}
+  - {fileID: 4450223798037892057}
+  - {fileID: 4450223798041200007}
+  - {fileID: 4450223798200261037}
+  - {fileID: 4450223796789722775}
+  - {fileID: 4450223796981063362}
+  - {fileID: 4450223797539648745}
+  - {fileID: 4450223798090400243}
+  - {fileID: 4450223798666832357}
+  - {fileID: 4450223798398849065}
+  - {fileID: 4450223798044856205}
+  - {fileID: 4450223798011020776}
+  - {fileID: 4450223798773385426}
+  - {fileID: 4450223797816621092}
+  - {fileID: 4450223797348764294}
+  - {fileID: 4450223797606926155}
+  - {fileID: 4450223798637537159}
+  _insideGameNotifications: {fileID: 239994395}
+  _playerInventory: {fileID: 1091095685}
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &237160695
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d414ade580673e41a69548f8f2b057d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayTimeToDestroyNotification: 0
-  _fieldPrefab: {fileID: 0}
+  _delayTimeToDestroyNotification: 8
+  _fieldPrefab: {fileID: 6739623391413725236, guid: c23c86f9d58d7154fab09f59378ad126,
+    type: 3}
 --- !u!1 &284544344
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,15 +704,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTime: 0
-  _timeToTheNextResource: 0
-  _stocks: []
-  _amountOfResourcesRequired: 
+  _timeToTheNextResource: 1
+  _stocks:
+  - {fileID: 1794424258}
+  _amountOfResourcesRequired: 04000000
   _allowProduce: 0
-  _insideGameNotifications: {fileID: 0}
-  _resourceDepot: {fileID: 0}
+  _insideGameNotifications: {fileID: 239994395}
+  _resourceDepot: {fileID: 497328285}
   _allowNotification: 0
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &430692523
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,18 +990,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _amountOfResources: 0
-  _maximumAmountOfResources: 0
+  _maximumAmountOfResources: 40
   _isFull: 0
   _isEmpty: 0
   _canTake: 0
-  _slots: []
-  _insideGameNotifications: {fileID: 0}
-  _playerInventory: {fileID: 0}
-  _resourcePrefab: {fileID: 0}
+  _slots:
+  - {fileID: 3944767983449204836}
+  - {fileID: 7384479400205339750}
+  - {fileID: 3137849887626429950}
+  - {fileID: 7094801499667195354}
+  - {fileID: 6422656918931781501}
+  - {fileID: 5237781142814426576}
+  - {fileID: 4279540578666301214}
+  - {fileID: 8754641459150418686}
+  - {fileID: 2924703251392093256}
+  - {fileID: 7354702966848544222}
+  - {fileID: 2370342277545382458}
+  - {fileID: 2007291091586268797}
+  - {fileID: 6380280191888165021}
+  - {fileID: 8893377809012175423}
+  - {fileID: 3750074949621603966}
+  - {fileID: 6417335080295161354}
+  - {fileID: 5598071149180152212}
+  - {fileID: 8368515567098206711}
+  - {fileID: 3534592860103578827}
+  - {fileID: 9134305486648886400}
+  - {fileID: 3626724689586813546}
+  - {fileID: 5493015787111093950}
+  - {fileID: 877261069921712718}
+  - {fileID: 3889907396513146327}
+  - {fileID: 5446190726767407066}
+  - {fileID: 1086904134715643825}
+  - {fileID: 9016127306165406538}
+  - {fileID: 3003586838178072491}
+  - {fileID: 6544120186154933551}
+  - {fileID: 1672898008210138792}
+  - {fileID: 8128777076051677206}
+  - {fileID: 8903481172314668389}
+  - {fileID: 9162342608022927114}
+  - {fileID: 73137363060044237}
+  - {fileID: 4294233604572369288}
+  - {fileID: 4228786380637586812}
+  - {fileID: 3885346501632200577}
+  - {fileID: 30079835747345968}
+  - {fileID: 1214531045948655311}
+  - {fileID: 866642216360491706}
+  _insideGameNotifications: {fileID: 239994395}
+  _playerInventory: {fileID: 1091095685}
+  _resourcePrefab: {fileID: 469422953228124029, guid: 767757d72d22d3c4f9d64e3719390863,
+    type: 3}
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &637855819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,15 +1153,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _stocks: []
   _amountOfResourcesRequired: 
   _allowProduce: 0
-  _insideGameNotifications: {fileID: 0}
-  _resourceDepot: {fileID: 0}
+  _insideGameNotifications: {fileID: 239994395}
+  _resourceDepot: {fileID: 1909473992}
   _allowNotification: 0
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &657874143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,18 +1520,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _amountOfResources: 0
-  _maximumAmountOfResources: 0
+  _maximumAmountOfResources: 40
   _isFull: 0
   _isEmpty: 0
   _canTake: 0
-  _slots: []
-  _insideGameNotifications: {fileID: 0}
-  _playerInventory: {fileID: 0}
-  _resourcePrefab: {fileID: 0}
+  _slots:
+  - {fileID: 4450223797783588019}
+  - {fileID: 4450223797046326124}
+  - {fileID: 4450223797195538520}
+  - {fileID: 4450223797591156339}
+  - {fileID: 4450223798877923810}
+  - {fileID: 4450223798119711729}
+  - {fileID: 4450223798222974408}
+  - {fileID: 4450223797703157821}
+  - {fileID: 4450223798055039956}
+  - {fileID: 4450223796828875238}
+  - {fileID: 4450223797939797604}
+  - {fileID: 4450223797396109198}
+  - {fileID: 4450223797983249878}
+  - {fileID: 4450223798651472979}
+  - {fileID: 4450223798273029336}
+  - {fileID: 4450223797452757998}
+  - {fileID: 4450223798120747885}
+  - {fileID: 4450223796802203265}
+  - {fileID: 4450223797816320711}
+  - {fileID: 4450223798263658393}
+  - {fileID: 4450223797978732705}
+  - {fileID: 4450223796755291353}
+  - {fileID: 4450223798165688679}
+  - {fileID: 4450223797395419286}
+  - {fileID: 4450223798053021166}
+  - {fileID: 4450223798032882250}
+  - {fileID: 4450223797597925836}
+  - {fileID: 4450223798012362024}
+  - {fileID: 4450223796868875795}
+  - {fileID: 4450223798448098092}
+  - {fileID: 4450223798353074335}
+  - {fileID: 4450223797714280409}
+  - {fileID: 4450223798115839794}
+  - {fileID: 4450223797316559332}
+  - {fileID: 4450223798101365364}
+  - {fileID: 4450223797257824262}
+  - {fileID: 4450223797639462249}
+  - {fileID: 4450223796793652042}
+  - {fileID: 4450223798130946935}
+  - {fileID: 4450223796862601415}
+  _insideGameNotifications: {fileID: 239994395}
+  _playerInventory: {fileID: 1091095685}
+  _resourcePrefab: {fileID: 4721147459157598881, guid: fca501f684046cb44b99b9f7934c5792,
+    type: 3}
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &859756898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,8 +1776,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
-  m_LocalPosition: {x: -13.835, y: 8, z: -3.3390002}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
+  m_LocalPosition: {x: 0, y: 8.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1805,15 +1929,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTime: 0
-  _timeToTheNextResource: 0
-  _stocks: []
-  _amountOfResourcesRequired: 
+  _timeToTheNextResource: 1
+  _stocks:
+  - {fileID: 1121890414}
+  - {fileID: 122969888}
+  _amountOfResourcesRequired: 0400000004000000
   _allowProduce: 0
-  _insideGameNotifications: {fileID: 0}
-  _resourceDepot: {fileID: 0}
+  _insideGameNotifications: {fileID: 239994395}
+  _resourceDepot: {fileID: 834876638}
   _allowNotification: 0
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &1091095683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,8 +1990,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFull: 0
-  _amountOfResources: 0
-  _slots: []
+  _amountOfResources: 1
+  _slots:
+  - {fileID: 1866480471246154431}
+  - {fileID: 284544345}
+  - {fileID: 1927544708}
+  - {fileID: 1978113479}
+  - {fileID: 1157482731}
+  - {fileID: 1404960079}
 --- !u!1 &1121890409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,19 +2107,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160e976a820875469156c8a24274152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredResourceId: 0
+  _requiredResourceId: 2
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _amountOfResources: 0
-  _maximumAmountOfResources: 0
+  _maximumAmountOfResources: 40
   _isFull: 0
   _isEmpty: 0
   _canPutDown: 0
-  _slots: []
-  _insideGameNotifications: {fileID: 0}
-  _playerInventory: {fileID: 0}
+  _slots:
+  - {fileID: 4450223798885456188}
+  - {fileID: 4450223798438205718}
+  - {fileID: 4450223798244653573}
+  - {fileID: 4450223797070854681}
+  - {fileID: 4450223798657697332}
+  - {fileID: 4450223798611946858}
+  - {fileID: 4450223796801896873}
+  - {fileID: 4450223797388157086}
+  - {fileID: 4450223796946460178}
+  - {fileID: 4450223797466598447}
+  - {fileID: 4450223798846382659}
+  - {fileID: 4450223798466387717}
+  - {fileID: 4450223798398718506}
+  - {fileID: 4450223797903200415}
+  - {fileID: 4450223798150612090}
+  - {fileID: 4450223798387450601}
+  - {fileID: 4450223798159312679}
+  - {fileID: 4450223798056347945}
+  - {fileID: 4450223797044540452}
+  - {fileID: 4450223797432027269}
+  - {fileID: 4450223797789206681}
+  - {fileID: 4450223796894056672}
+  - {fileID: 4450223797141893465}
+  - {fileID: 4450223797229779372}
+  - {fileID: 4450223797688086516}
+  - {fileID: 4450223798275907889}
+  - {fileID: 4450223796846820201}
+  - {fileID: 4450223798233959306}
+  - {fileID: 4450223796915579565}
+  - {fileID: 4450223797547554563}
+  - {fileID: 4450223798401180000}
+  - {fileID: 4450223797090258785}
+  - {fileID: 4450223797584403170}
+  - {fileID: 4450223797514533668}
+  - {fileID: 4450223797779523862}
+  - {fileID: 4450223797707525501}
+  - {fileID: 4450223798527596654}
+  - {fileID: 4450223798097888946}
+  - {fileID: 4450223798094831397}
+  - {fileID: 4450223797712080942}
+  _insideGameNotifications: {fileID: 239994395}
+  _playerInventory: {fileID: 1091095685}
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &1157482730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,7 +2355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290785723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.835, y: 1, z: 6.661}
+  m_LocalPosition: {x: 0, y: 1.5, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1091095684}
@@ -2277,7 +2449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf9525477873347a53ad44f0cc8d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 0
+  _movementSpeed: 8
 --- !u!114 &1290785732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2412,8 +2584,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438169616}
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
-  m_LocalPosition: {x: -13.835, y: 8, z: -3.3390002}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
+  m_LocalPosition: {x: 0, y: 8.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 302939755}
@@ -2700,19 +2872,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160e976a820875469156c8a24274152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredResourceId: 0
+  _requiredResourceId: 1
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _amountOfResources: 0
-  _maximumAmountOfResources: 0
+  _maximumAmountOfResources: 40
   _isFull: 0
   _isEmpty: 0
   _canPutDown: 0
-  _slots: []
-  _insideGameNotifications: {fileID: 0}
-  _playerInventory: {fileID: 0}
+  _slots:
+  - {fileID: 4450223798183247354}
+  - {fileID: 4450223797111388369}
+  - {fileID: 4450223798386469041}
+  - {fileID: 4450223798606287677}
+  - {fileID: 4450223797974909738}
+  - {fileID: 4450223797987281622}
+  - {fileID: 4450223797047147677}
+  - {fileID: 4450223798782480866}
+  - {fileID: 4450223796848095424}
+  - {fileID: 4450223798106537430}
+  - {fileID: 4450223798517064886}
+  - {fileID: 4450223797935458325}
+  - {fileID: 4450223798111494194}
+  - {fileID: 4450223797387803245}
+  - {fileID: 4450223797816893694}
+  - {fileID: 4450223796862289912}
+  - {fileID: 4450223798650052717}
+  - {fileID: 4450223798137701715}
+  - {fileID: 4450223797352549977}
+  - {fileID: 4450223798531341538}
+  - {fileID: 4450223797590741564}
+  - {fileID: 4450223798325286550}
+  - {fileID: 4450223798239072776}
+  - {fileID: 4450223797919014384}
+  - {fileID: 4450223796913573425}
+  - {fileID: 4450223798709161729}
+  - {fileID: 4450223797191890811}
+  - {fileID: 4450223797406542210}
+  - {fileID: 4450223798255126470}
+  - {fileID: 4450223796991320276}
+  - {fileID: 4450223796879409200}
+  - {fileID: 4450223798313139834}
+  - {fileID: 4450223798220646012}
+  - {fileID: 4450223798416404049}
+  - {fileID: 4450223797664212073}
+  - {fileID: 4450223798804789707}
+  - {fileID: 4450223798253561546}
+  - {fileID: 4450223796925185014}
+  - {fileID: 4450223797604044466}
+  - {fileID: 4450223797654070611}
+  _insideGameNotifications: {fileID: 239994395}
+  _playerInventory: {fileID: 1091095685}
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &1844779823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,18 +3105,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTime: 0
-  _timeToTheNextResource: 0
+  _timeToTheNextResource: 1
   _amountOfResources: 0
-  _maximumAmountOfResources: 0
+  _maximumAmountOfResources: 40
   _isFull: 0
   _isEmpty: 0
   _canTake: 0
-  _slots: []
-  _insideGameNotifications: {fileID: 0}
-  _playerInventory: {fileID: 0}
-  _resourcePrefab: {fileID: 0}
+  _slots:
+  - {fileID: 4450223798875939198}
+  - {fileID: 4450223797015491287}
+  - {fileID: 4450223797498050281}
+  - {fileID: 4450223798400350883}
+  - {fileID: 4450223797497504343}
+  - {fileID: 4450223798156388397}
+  - {fileID: 4450223797670622800}
+  - {fileID: 4450223796823654745}
+  - {fileID: 4450223796810997163}
+  - {fileID: 4450223797424274552}
+  - {fileID: 4450223798099251565}
+  - {fileID: 4450223796803882199}
+  - {fileID: 4450223798101852883}
+  - {fileID: 4450223797263238433}
+  - {fileID: 4450223797486779619}
+  - {fileID: 4450223798892482149}
+  - {fileID: 4450223797783675984}
+  - {fileID: 4450223797334031225}
+  - {fileID: 4450223798014758206}
+  - {fileID: 4450223797356394246}
+  - {fileID: 4450223797193608878}
+  - {fileID: 4450223797713730028}
+  - {fileID: 4450223797645743918}
+  - {fileID: 4450223796968793895}
+  - {fileID: 4450223796881221420}
+  - {fileID: 4450223797855713379}
+  - {fileID: 4450223798502857762}
+  - {fileID: 4450223797182013945}
+  - {fileID: 4450223797510402105}
+  - {fileID: 4450223797617203302}
+  - {fileID: 4450223798515244600}
+  - {fileID: 4450223797343253684}
+  - {fileID: 4450223798012062069}
+  - {fileID: 4450223797620332928}
+  - {fileID: 4450223796777382912}
+  - {fileID: 4450223798807224594}
+  - {fileID: 4450223798669268816}
+  - {fileID: 4450223797758027810}
+  - {fileID: 4450223797354088151}
+  - {fileID: 4450223797822581674}
+  _insideGameNotifications: {fileID: 239994395}
+  _playerInventory: {fileID: 1091095685}
+  _resourcePrefab: {fileID: 4450223797811203368, guid: 60af85e35a721a24e873191965713d6b,
+    type: 3}
   _currentTimeNotification: 0
-  _timeToTheNextNotification: 0
+  _timeToTheNextNotification: 4
 --- !u!1 &1927544707
 GameObject:
   m_ObjectHideFlags: 0
